@@ -22,17 +22,31 @@
                 <img src="images.jpg" alt="最難的問題是每一天晚餐要吃什麼">
             </div>
             <div class="info">
-                <h1>個人簡介：<h1>
-                    <p>我是資工三甲的同學，學號是29號，生日就不說了，平常最喜歡看漫畫，韓漫和日漫都有涉略
-                        ，另外，也喜歡打戰旗和打牌，歡迎來找我聊天，Email:andrew535456@gmail.com
-                    </p>
+                <h1>個人簡介：</h1>
+                <p>我是資工三甲的同學，學號是29號，生日就不說了，平常最喜歡看漫畫，韓漫和日漫都有涉略，
+                    另外，也喜歡打戰旗和打牌，歡迎來找我聊天，Email:andrew535456@gmail.com
+                </p>
+            </div>
+        </section>
+
+        <!-- 新增功能區塊 -->
+        <section class="instance-info">
+            <h2>雲端伺服器資訊</h2>
+            <div class="info-box">
+                <span>Instance ID: </span><span id="instanceId">Loading...</span>
+            </div>
+            <div class="info-box">
+                <span>可用區域 (AZ): </span><span id="az">Loading...</span>
+            </div>
+            <div class="info-box">
+                <span>當前 CPU 負載: </span><span id="cpuLoad">Loading...</span>
             </div>
         </section>
 
         <section class="video-section">
             <h2>這真的不是我</h2>
-            <img src="LOL.gif">
-            <div class="video-and-audio"></div>
+            <img src="LOL.gif" alt="搞笑圖片">
+            <div class="video-and-audio">
                 <video controls>
                     <source src="IMG_1314.mov" type="video/mp4">
                 </video>
@@ -42,11 +56,38 @@
                         <source src="Cloud.m4a" type="audio/mp3">
                     </audio>
                 </div>
+            </div>
         </section>
-        
+
         <footer>
             <p>&copy; 2024 本人也就是我 還是抽卡必歪</p>
         </footer>
     </div>
+
+    <script>
+        // 模擬從API獲取的數據（實際應該從伺服器或API獲取數據）
+        //const instanceId = "i-1234567890abcdef"; // 模擬Instance ID
+        //const availabilityZone = "us-west-2a";   // 模擬可用區域
+        //const cpuLoad = "25%";                  // 模擬CPU負載
+
+        // 實際應用中，你可能會用AJAX或者Fetch API來獲取資料
+        
+        fetch('/api/instance-info')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('instanceId').innerText = data.instanceId;
+            document.getElementById('az').innerText = data.availabilityZone;
+            document.getElementById('cpuLoad').innerText = data.cpuLoad + '%';
+        })
+        .catch(error => console.error('Error fetching instance info:', error));
+
+        // 將數據顯示到HTML中
+        document.getElementById('instanceId').innerText = instanceId;
+        document.getElementById('az').innerText = availabilityZone;
+        document.getElementById('cpuLoad').innerText = cpuLoad;
+
+ 
+        
+    </script>
 </body>
 </html>
